@@ -1,0 +1,51 @@
+//onboard rocket detector
+//xbee channel 1337
+//deploy bit = 2
+int incomingData = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode (buttonPin, INPUT)
+}
+
+
+void dataRead() {
+  //read the incoming command
+  if (Serial.available() > 0) {
+    int incomingData = Serial.read();
+  }
+  if (incomingData == 2) {
+    Serial.println ("Chutecharge");
+    delay (200);
+  }
+  else {
+    Serial.println ("its working");
+    delay (500);
+  }
+  //insert deploy proticol
+}
+void loop () {
+}
+
+//Button is plugged on pin 4
+//serial 9600
+// launch code = 2
+const int buttonPin = 4;
+//button pplugged into pin 4
+int buttonState = 0;
+// to determine state of button
+
+}
+void buttonLaunch () {
+  if (buttonPin == HIGH) {
+    Serial.println (2);
+    delay (200);
+  }
+  else {
+    //placeholder for test
+    Serial.println (5);
+    delay (200);
+  }
+}
+void loop() {
+}
