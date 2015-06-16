@@ -19,7 +19,7 @@ void setup() {
 }
 
 
-void loop() {
+void queuesetup() {
   sensors_event_t event;
   gyro.getEvent(&event);
   Q.push(event.gyro.z);
@@ -42,4 +42,7 @@ void loop() {
   }
   Q.push((float)millis());
 delay(100);
+}
+void loop(){
+}
 }
