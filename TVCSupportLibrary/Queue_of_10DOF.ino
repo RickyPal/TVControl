@@ -14,32 +14,45 @@ Adafruit_L3GD20_Unified       gyro  = Adafruit_L3GD20_Unified(20);
 
   float a[10];
   QueueArray <float> Q;
-
+sensors_event_t event;
 void setup() {
 }
 
 
-void loop() {
-  sensors_event_t event;
+void gyro() {
+  
   gyro.getEvent(&event);
   Q.push(event.gyro.z);
   Q.push(-1*event.gyro.y);
   Q.push(event.gyro.x);
+  Q.push((float)millis());
+    delay(100);
+}
+  void accel () {
   accel.getEvent(&event);
   Q.push(event.acceleration.z);
   Q.push(-1*event.acceleration.y);
   Q.push(event.acceleration.x);
+  Q.push((float)millis());
+    delay(100);
+  }
+  void mag (){
   mag.getEvent(&event);
   Q.push(event.magnetic.z);
   Q.push(-1*event.magnetic.y);
   Q.push(event.magnetic.x);
+  Q.push((float)millis());
+    delay(100);
+  }
   bmp.getEvent(&event);
   if(event.pressure){
     float temperature;
     bmp.getTemperature(&temperature);
     float seaLevelPressure = SENSORS_PRESSURE_SEALEVELHPA; 
-  Q.push((bmp.pressureToAltitude(seaLevelPressure,event.pressure,temperature)));
+      Q.push((bmp.pressureToAltitude(seaLevelPressure,event.pressure,temperature)));
   }
-  Q.push((float)millis());
-delay(100);
+;
+
+void loop(){
+}
 }
